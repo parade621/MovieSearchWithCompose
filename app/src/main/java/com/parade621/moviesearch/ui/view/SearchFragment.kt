@@ -58,9 +58,17 @@ class SearchFragment : Fragment() {
         }
     }
 
-    fun searchBooks() {
+    fun searchMovies() {
         val query = binding.etSearch.text.toString()
         movieSearchViewModel.searchMovies(query)
+        setupRecyclerView()
+        movieSearchViewModel.setRecentSearch(query)
+    }
+
+    fun recentSearchMovie() {
+        val query = movieSearchViewModel.recentSearch.value!!
+        movieSearchViewModel.searchMovies(query)
+        binding.etSearch.setText(query)
         setupRecyclerView()
     }
 

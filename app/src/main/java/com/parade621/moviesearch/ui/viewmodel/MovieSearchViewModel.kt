@@ -17,6 +17,9 @@ class MovieSearchViewModel(
     private val _searchResult = MutableLiveData<SearchResponse>()
     val searchResult: LiveData<SearchResponse> get() = _searchResult
 
+    private val _recentSearch = MutableLiveData<String?>()
+    val recentSearch: LiveData<String?> get() = _recentSearch!!
+
     // Coroutine
     fun searchMovies(query: String) = viewModelScope.launch(Dispatchers.IO) {
         val response = movieSearchRepository.saerchMovie(query)
@@ -26,5 +29,10 @@ class MovieSearchViewModel(
             }
         }
     }
+
+    fun setRecentSearch(query: String) {
+        _recentSearch.value = query
+    }
+
 
 }
