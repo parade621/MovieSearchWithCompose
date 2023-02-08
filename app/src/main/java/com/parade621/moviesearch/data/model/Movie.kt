@@ -1,4 +1,4 @@
-package com.parade621.moviesearch.ui.data.model
+package com.parade621.moviesearch.data.model
 
 
 import com.squareup.moshi.Json
