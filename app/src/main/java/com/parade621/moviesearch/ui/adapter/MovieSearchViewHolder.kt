@@ -12,9 +12,9 @@ class MovieSearchViewHolder(
     fun bind(movie: Movie) {
         itemView.apply {
             binding.ivArtivleIamge.load(movie.image)
-            binding.tvTitle.text = movie.title
-            binding.tvRelease.text = movie.pubDate
-            binding.tvGrade.text = movie.userRating
+            binding.tvTitle.text = "제목: ${movie.title}"
+            binding.tvRelease.text = "출시: ${movie.pubDate}"
+            binding.tvGrade.text = "평점: ${movie.userRating}"
         }
     }
 
