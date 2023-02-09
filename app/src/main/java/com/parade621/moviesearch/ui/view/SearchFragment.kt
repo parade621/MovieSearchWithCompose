@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.parade621.moviesearch.databinding.FragmentSearchBinding
@@ -39,7 +41,7 @@ class SearchFragment : Fragment() {
             val movies = response.items
             movieSearchAdapter.submitList(movies)
         }
-
+        setupRecyclerView()
     }
 
     private fun setupRecyclerView() {
@@ -55,6 +57,12 @@ class SearchFragment : Fragment() {
                 )
             )
             adapter = movieSearchAdapter
+        }
+        // ItemClick
+        movieSearchAdapter.setOnItemClickListener {
+            val action: NavDirections =
+                SearchFragmentDirections.actionSearchFragmentToMoviewFragment(it)
+            findNavController().navigate(action)
         }
     }
 

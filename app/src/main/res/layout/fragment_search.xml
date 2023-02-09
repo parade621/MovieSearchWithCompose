@@ -25,6 +25,7 @@
             android:padding="4dp"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toStartOf="@id/btn_search"
+            app:layout_constraintHorizontal_weight="8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -38,27 +39,29 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:onClick="@{()->searchFragment.searchMovies()}"
             android:text="검색"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/rv_search_result"
             app:layout_constraintEnd_toStartOf="@id/btn_recent"
+            app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toEndOf="@id/tl_search"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_recent"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:onClick="@{()->searchFragment.recentSearchMovie()}"
             android:text="최근검색"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/rv_search_result"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toEndOf="@id/btn_search"
             app:layout_constraintTop_toTopOf="parent" />
 

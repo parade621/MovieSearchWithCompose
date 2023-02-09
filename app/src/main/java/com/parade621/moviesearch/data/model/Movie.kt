@@ -1,9 +1,12 @@
 package com.parade621.moviesearch.data.model
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Movie(
     @Json(name = "actor")
@@ -22,4 +25,4 @@ data class Movie(
     val title: String,
     @Json(name = "userRating")
     val userRating: String
-)
+) : Parcelable

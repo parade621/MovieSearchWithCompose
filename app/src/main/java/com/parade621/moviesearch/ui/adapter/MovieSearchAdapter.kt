@@ -18,9 +18,21 @@ class MovieSearchAdapter : ListAdapter<Movie, MovieSearchViewHolder>(MovieDiffCa
     override fun onBindViewHolder(holder: MovieSearchViewHolder, position: Int) {
         val movie = currentList[position]
         holder.bind(movie)
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let {
+                it(movie)
+            }
+        }
     }
 
-    companion object {
+    private var onItemClickListener: ((Movie) -> Unit)? = null
+    fun setOnItemClickListener(listener: (Movie) -> Unit) {
+        onItemClickListener = listener
+    }
+
+    companion
+
+    object {
         private val MovieDiffCallback = object : DiffUtil.ItemCallback<Movie>() {
             override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem.subtitle == newItem.subtitle
@@ -31,5 +43,5 @@ class MovieSearchAdapter : ListAdapter<Movie, MovieSearchViewHolder>(MovieDiffCa
             }
         }
     }
-    
+
 }
