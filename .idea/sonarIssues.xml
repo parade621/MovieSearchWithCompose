@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../BookSearchApp/app/src/main/java/com/parade621/booksearchapp/data/repository/BookSearchRepositoryImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../BookSearchApp/app/src/main/res/layout/fragment_search.xml">
           <value>
             <set />
@@ -23,6 +28,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/parade621/moviesearch/data/db/MovieSearchDao_Impl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/com/parade621/moviesearch/data/db/MovieSearchDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <value>
             <set />
@@ -34,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/parade621/moviesearch/data/api/RetrofitInstance.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/parade621/moviesearch/data/db/AppDatabase.kt">
           <value>
             <set />
           </value>
@@ -79,6 +99,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/parade621/moviesearch/ui/adapter/MovieSearchViewHolder.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/parade621/moviesearch/ui/adapter/RecentSearchAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/parade621/moviesearch/ui/adapter/RecentSearchViewHolder.kt">
           <value>
             <set />
           </value>
@@ -184,6 +214,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_movie_preview.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/recent_query_preview.xml">
           <value>
             <set />
           </value>

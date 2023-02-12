@@ -1,15 +1,17 @@
 package com.parade621.moviesearch.data.db
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
 @Dao
 interface MovieSearchDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertQuery(query: String)
+    suspend fun insertQuery(query: RecentSearch)
 
     @Delete
-    suspend fun deleteQuery(query: String)
+    suspend fun deleteQuery(query: RecentSearch)
+
+    @Query("SELECT * FROM querys")
+    fun getAll(): LiveData<List<RecentSearch>>
 }

@@ -9,6 +9,8 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.parade621.moviesearch.R
+import com.parade621.moviesearch.data.db.RecentSearch
 import com.parade621.moviesearch.databinding.FragmentSearchBinding
 import com.parade621.moviesearch.ui.adapter.MovieSearchAdapter
 import com.parade621.moviesearch.ui.viewmodel.MovieSearchViewModel
@@ -36,6 +38,12 @@ class SearchFragment : Fragment() {
             searchFragment = this@SearchFragment
         }
         movieSearchViewModel = (activity as MainActivity).movieSearchViewModel
+
+        if (!movieSearchViewModel.recentSearch.value.isNullOrEmpty()) {
+            binding.etSearch.setText(movieSearchViewModel.recentSearch.value.toString())
+            movieSearchViewModel.clearRecentSearch()
+            searchMovies()
+        }
 
         movieSearchViewModel.searchResult.observe(viewLifecycleOwner) { response ->
             val movies = response.items
@@ -66,11 +74,16 @@ class SearchFragment : Fragment() {
         }
     }
 
+    fun showRecentSearch() {
+        findNavController().navigate(R.id.action_searchFragment_to_recentSearchFragment)
+    }
+
     fun searchMovies() {
         val query = binding.etSearch.text.toString()
         movieSearchViewModel.searchMovies(query)
         setupRecyclerView()
-        movieSearchViewModel.setRecentSearch(query)
+        movieSearchViewModel.saveQuery(RecentSearch(query))
+        //Log.d("viewModel query:", movieSearchViewModel.allQuery.value?.size.toString())
     }
 
     fun recentSearchMovie() {

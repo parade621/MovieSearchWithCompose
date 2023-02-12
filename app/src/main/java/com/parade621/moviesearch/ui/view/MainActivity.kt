@@ -3,6 +3,7 @@ package com.parade621.moviesearch.ui.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.parade621.moviesearch.data.db.AppDatabase
 import com.parade621.moviesearch.data.repository.MovieSearchRepositoryImpl
 import com.parade621.moviesearch.databinding.ActivityMainBinding
 import com.parade621.moviesearch.ui.viewmodel.MovieSearchViewModel
@@ -19,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val movieSearchRepository = MovieSearchRepositoryImpl()
+        val database = AppDatabase.getInstance(this)
+        val movieSearchRepository = MovieSearchRepositoryImpl(database)
         val factory = MovieSearchViewModelProviderFactory(movieSearchRepository)
         movieSearchViewModel = ViewModelProvider(this, factory)[MovieSearchViewModel::class.java]
 
