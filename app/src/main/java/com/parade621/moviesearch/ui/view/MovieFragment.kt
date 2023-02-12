@@ -1,7 +1,6 @@
 package com.parade621.moviesearch.ui.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,6 @@ class MovieFragment : Fragment() {
         binding.webview.apply {
             webViewClient = WebViewClient()
             settings.javaScriptEnabled = true
-            Log.d("why http?:", movie.link)
             loadUrl(movie.link)
 
         }

@@ -4,10 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.parade621.moviesearch.data.db.RecentSearch
+import com.parade621.moviesearch.data.model.Movie
 import com.parade621.moviesearch.data.model.SearchResponse
 import com.parade621.moviesearch.data.repository.MovieSearchRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MovieSearchViewModel(
@@ -46,10 +52,21 @@ class MovieSearchViewModel(
     }
 
     val allQuery: LiveData<List<RecentSearch>> = movieSearchRepository.getAll()
-    // 함수 하나 만들어서 역순 정렬ㄱ
-    // 10개씩 정렬까지만 만들면 대충 기능 구현은 완료
 
     fun clearRecentSearch() {
         _recentSearch.value = null
+    }
+
+    private val _searchPagingResult = MutableStateFlow<PagingData<Movie>>(PagingData.empty())
+    val searchPagingResult: StateFlow<PagingData<Movie>> = _searchPagingResult.asStateFlow()
+
+    fun searchMoviePaging(query: String) {
+        viewModelScope.launch {
+            movieSearchRepository.searchMoviePaging(query)
+                .cachedIn(viewModelScope)
+                .collect {
+                    _searchPagingResult.value = it
+                }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.parade621.moviesearch.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.parade621.moviesearch.R
 import com.parade621.moviesearch.data.db.RecentSearch
 import com.parade621.moviesearch.databinding.FragmentSearchBinding
-import com.parade621.moviesearch.ui.adapter.MovieSearchAdapter
+import com.parade621.moviesearch.ui.adapter.MovieSearchPagingAdapter
 import com.parade621.moviesearch.ui.viewmodel.MovieSearchViewModel
+import com.parade621.moviesearch.util.collectLatestStateFlow
 
 class SearchFragment : Fragment() {
 
@@ -21,7 +23,8 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var movieSearchViewModel: MovieSearchViewModel
-    private lateinit var movieSearchAdapter: MovieSearchAdapter
+    private lateinit var movieSearchAdapter: MovieSearchPagingAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,16 +47,14 @@ class SearchFragment : Fragment() {
             movieSearchViewModel.clearRecentSearch()
             searchMovies()
         }
-
-        movieSearchViewModel.searchResult.observe(viewLifecycleOwner) { response ->
-            val movies = response.items
-            movieSearchAdapter.submitList(movies)
-        }
         setupRecyclerView()
+        collectLatestStateFlow(movieSearchViewModel.searchPagingResult) {
+            movieSearchAdapter.submitData(it)
+        }
     }
 
     private fun setupRecyclerView() {
-        movieSearchAdapter = MovieSearchAdapter()
+        movieSearchAdapter = MovieSearchPagingAdapter()
         binding.rvSearchResult.apply {
             setHasFixedSize(true)
             layoutManager =
@@ -80,18 +81,11 @@ class SearchFragment : Fragment() {
 
     fun searchMovies() {
         val query = binding.etSearch.text.toString()
-        movieSearchViewModel.searchMovies(query)
-        setupRecyclerView()
+        Log.d("이름: 입력", query)
+        movieSearchViewModel.searchMoviePaging(query)
         movieSearchViewModel.saveQuery(RecentSearch(query))
-        //Log.d("viewModel query:", movieSearchViewModel.allQuery.value?.size.toString())
     }
 
-    fun recentSearchMovie() {
-        val query = movieSearchViewModel.recentSearch.value!!
-        movieSearchViewModel.searchMovies(query)
-        binding.etSearch.setText(query)
-        setupRecyclerView()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

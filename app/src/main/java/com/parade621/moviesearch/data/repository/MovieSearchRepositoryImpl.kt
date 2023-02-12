@@ -16,7 +16,7 @@ import retrofit2.Response
 
 
 class MovieSearchRepositoryImpl(
-    private val db: AppDatabase
+    private val db: AppDatabase,
 ) : MovieSearchRepository {
 
     override suspend fun saerchMovie(
@@ -24,7 +24,6 @@ class MovieSearchRepositoryImpl(
         display: Int,
         start: Int
     ): Response<SearchResponse> {
-        Log.d("see query in?:", query.toString())
         return api.searchMovies(query, 10, 1)
     }
 
@@ -41,6 +40,7 @@ class MovieSearchRepositoryImpl(
     }
 
     override fun searchMoviePaging(query: String): Flow<PagingData<Movie>> {
+        Log.d("이름 레포지토리임플:", query)
         val pagingSourceFactory: () -> MovieSearchPagingSource = {
             MovieSearchPagingSource(api, query)
         }
