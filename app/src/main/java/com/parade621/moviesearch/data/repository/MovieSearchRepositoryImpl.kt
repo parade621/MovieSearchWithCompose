@@ -1,6 +1,5 @@
 package com.parade621.moviesearch.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -40,7 +39,6 @@ class MovieSearchRepositoryImpl(
     }
 
     override fun searchMoviePaging(query: String): Flow<PagingData<Movie>> {
-        Log.d("이름 레포지토리임플:", query)
         val pagingSourceFactory: () -> MovieSearchPagingSource = {
             MovieSearchPagingSource(api, query)
         }

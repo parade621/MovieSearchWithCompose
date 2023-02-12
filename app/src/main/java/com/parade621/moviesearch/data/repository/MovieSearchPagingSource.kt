@@ -1,6 +1,5 @@
 package com.parade621.moviesearch.data.repository
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.parade621.moviesearch.data.api.MovieSearchApi
@@ -29,8 +28,6 @@ class MovieSearchPagingSource(
                 api.searchMovies(query, params.loadSize, pageNumber)
             val endOfPaginationReached: Boolean =
                 (response.body()?.start!! + response.body()?.display!! == response.body()?.total!!)
-            Log.d("PagingSource:", "${response.body()?.start} and ${response.body()?.display!!}")
-            Log.d("이름 페이징소스", "${response.body()?.items.toString()}")
 
             val data: List<Movie> = response.body()?.items!!
             val prevkey: Int? = if (pageNumber == STARTING_INDEX) null else pageNumber - PAGING_SIZE

@@ -1,6 +1,5 @@
 package com.parade621.moviesearch.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -19,7 +18,6 @@ class MovieSearchPagingAdapter :
 
     override fun onBindViewHolder(holder: MovieSearchViewHolder, position: Int) {
         val pagedMovie: Movie? = getItem(position)
-        Log.d("이름:페이징어뎁터", pagedMovie!!.title)
         pagedMovie?.let { movie ->
             holder.bind(movie)
             holder.itemView.setOnClickListener {

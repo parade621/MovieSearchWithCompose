@@ -1,7 +1,6 @@
 package com.parade621.moviesearch.ui.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,7 +80,6 @@ class SearchFragment : Fragment() {
 
     fun searchMovies() {
         val query = binding.etSearch.text.toString()
-        Log.d("이름: 입력", query)
         movieSearchViewModel.searchMoviePaging(query)
         movieSearchViewModel.saveQuery(RecentSearch(query))
     }
