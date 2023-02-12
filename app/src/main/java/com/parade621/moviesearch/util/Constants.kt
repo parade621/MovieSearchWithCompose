@@ -8,4 +8,5 @@ object Constants {
     const val CLIENT_SECRET: String = BuildConfig.moviewApiSecretKey
     const val SEARCH_TIME_DELAY = 100L
     const val RECENT_SEARCH_PREVIEW = 10
+    const val PAGING_SIZE = 15
 }

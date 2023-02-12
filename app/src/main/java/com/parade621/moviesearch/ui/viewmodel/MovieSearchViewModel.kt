@@ -24,7 +24,7 @@ class MovieSearchViewModel(
 
     // Coroutine
     fun searchMovies(query: String) = viewModelScope.launch(Dispatchers.IO) {
-        val response = movieSearchRepository.saerchMovie(query)
+        val response = movieSearchRepository.saerchMovie(query, 10, 1)
         if (response.isSuccessful) {
             response.body()?.let { body ->
                 _searchResult.postValue(body)

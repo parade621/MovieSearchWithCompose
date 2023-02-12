@@ -5,6 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+/**
+ * 최근 검색 기록을 저장하기 위해 Room db를 사용합니다.
+ */
+
 @Database(
     entities = [RecentSearch::class],
     version = 1,
