@@ -8,6 +8,11 @@ import com.parade621.moviesearch.data.db.RecentSearch
 import com.parade621.moviesearch.databinding.RecentQueryPreviewBinding
 import com.parade621.moviesearch.ui.viewmodel.MovieSearchViewModel
 
+/**
+ * 최근 검색 기록을 위한 RecyclerView Adapter입니다.
+ * RecentSearchFragment에서 바로 검색 기록을 삭제 가능하도록 하기 위해 viewModel을 파라미터로 받습니다.
+ */
+
 class RecentSearchAdapter(private val viewModel: MovieSearchViewModel) :
     ListAdapter<RecentSearch, RecentSearchViewHolder>(SearchDiffCallback) {
 

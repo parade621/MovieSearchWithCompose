@@ -27,17 +27,6 @@ class MovieSearchViewModel(
     private val _recentSearch = MutableLiveData<String?>(null)
     val recentSearch: LiveData<String?> get() = _recentSearch!!
 
-
-    // Coroutine
-    fun searchMovies(query: String) = viewModelScope.launch(Dispatchers.IO) {
-        val response = movieSearchRepository.saerchMovie(query, 10, 1)
-        if (response.isSuccessful) {
-            response.body()?.let { body ->
-                _searchResult.postValue(body)
-            }
-        }
-    }
-
     fun setRecentSearch(query: String) {
         _recentSearch.value = query
     }
@@ -57,6 +46,7 @@ class MovieSearchViewModel(
         _recentSearch.value = null
     }
 
+    // Paging
     private val _searchPagingResult = MutableStateFlow<PagingData<Movie>>(PagingData.empty())
     val searchPagingResult: StateFlow<PagingData<Movie>> = _searchPagingResult.asStateFlow()
 

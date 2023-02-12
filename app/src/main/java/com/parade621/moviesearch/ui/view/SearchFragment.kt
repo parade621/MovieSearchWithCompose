@@ -41,6 +41,7 @@ class SearchFragment : Fragment() {
         }
         movieSearchViewModel = (activity as MainActivity).movieSearchViewModel
 
+        // RecentSearchFragment에서 검색어를 클릭 시, 해당 검색어로 검색을 진행하기 위한 코드입니다.
         if (!movieSearchViewModel.recentSearch.value.isNullOrEmpty()) {
             binding.etSearch.setText(movieSearchViewModel.recentSearch.value.toString())
             movieSearchViewModel.clearRecentSearch()

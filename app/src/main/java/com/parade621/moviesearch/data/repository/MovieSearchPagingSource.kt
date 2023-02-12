@@ -10,6 +10,10 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
+/**
+ * Retrofit 검색 응답에 Paging을 적용하기 위한 PagingSource입니다.
+ */
+
 class MovieSearchPagingSource(
     private val api: MovieSearchApi,
     private val query: String

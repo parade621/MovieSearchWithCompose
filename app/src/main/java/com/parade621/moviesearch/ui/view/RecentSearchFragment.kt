@@ -39,6 +39,9 @@ class RecentSearchFragment : Fragment() {
 
         movieSearchViewModel = (activity as MainActivity).movieSearchViewModel
 
+        /**
+         * 검색 기록을 최신 순서로 표시하기 위해 db에서 가져온 데이터List를 reversed합니다.
+         */
         movieSearchViewModel.allQuery.observe(viewLifecycleOwner) {
             if (it.size > RECENT_SEARCH_PREVIEW) {
                 recentSearchAdapter.submitList(it.reversed().slice(0..9))

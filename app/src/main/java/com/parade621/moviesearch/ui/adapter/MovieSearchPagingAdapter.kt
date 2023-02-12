@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import com.parade621.moviesearch.data.model.Movie
 import com.parade621.moviesearch.databinding.ItemMoviePreviewBinding
 
+/**
+ * Paging된 응답에 반응하기 위한 RecyclerAdapter입니다.
+ */
+
 class MovieSearchPagingAdapter :
     PagingDataAdapter<Movie, MovieSearchViewHolder>(MovieDiffCallback) {
 
