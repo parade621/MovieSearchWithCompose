@@ -5,7 +5,6 @@ import androidx.room.*
 
 @Dao
 interface MovieSearchDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertQuery(query: RecentSearch)
 
